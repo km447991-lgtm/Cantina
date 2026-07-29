@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión</title>
+<style>
+/* Detecta el tema automáticamente */
+:root {
+  --fondo: #ffffff;
+  --texto: #000000;
+  --tarjeta: #f8f9fa;
+  --borde: #ddd;
+  --boton-azul: #1a73e8;
+  --texto-boton: #ffffff;
+  --boton-google: #f8f9fa;
+  --texto-google: #333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #121212;
+    --texto: #ffffff;
+    --tarjeta: #1e1e1e;
+    --borde: #444;
+    --boton-azul: #4285f4;
+    --texto-boton: #ffffff;
+    --boton-google: #1e1e1e;
+    --texto-google: #eee;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.caja-sesion {
+  background: var(--tarjeta);
+  border-radius: 12px;
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--fondo);
+  color: var(--texto);
+  font-size: 15px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--boton-azul);
+}
+
+.boton-azul {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background: var(--boton-azul);
+  color: var(--texto-boton);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.separador {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #888;
+  font-size: 13px;
+}
+
+.separador::before, .separador::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+.boton-google {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  background: var(--boton-google);
+  color: var(--texto-google);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.boton-google img {
+  width: 20px;
+  height: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="caja-sesion">
+  <h2>Iniciar sesión</h2>
+  <input type="email" id="correo" placeholder="Correo electrónico" required>
+  <button class="boton-azul" onclick="continuar()">Continuar</button>
+  
+  <div class="separador">o</div>
+
+  <button class="boton-google" onclick="ingresarGoogle()">
+    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+    Continuar con Google
+  </button>
+</div>
+
+<script>
+// Aquí pones el enlace de tu repositorio/espacio compartido
+const ENLACE_DESTINO = "https://github.com/TU_USUARIO/TU_REPOSITORIO_AQUI";
+
+function continuar() {
+  const correo = document.getElementById("correo").value;
+  if (!correo) {
+    alert("Por favor escribe tu correo");
+    return;
+  }
+  window.location.href = ENLACE_DESTINO;
+}
+
+function ingresarGoogle() {
+  // Para la conexión real con Google necesitas configurar Firebase o Google Cloud
+  // Por ahora funciona como acceso directo al espacio compartido
+  window.location.href = ENLACE_DESTINO;
+}
+</script>
+</body>
+</html>
