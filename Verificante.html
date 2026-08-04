@@ -1,167 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iniciar Sesión</title>
-<style>
-/* Detecta el tema automáticamente */
-:root {
-  --fondo: #ffffff;
-  --texto: #000000;
-  --tarjeta: #f8f9fa;
-  --borde: #ddd;
-  --boton-azul: #1a73e8;
-  --texto-boton: #ffffff;
-  --boton-google: #f8f9fa;
-  --texto-google: #333;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <style>
+        /* Tema CLARO por defecto */
+        :root {
+            --fondo-pagina: #e9e9e9;
+            --fondo-tarjeta: #ffffff;
+            --texto: #000000;
+            --campo-fondo: #ffffff;
+            --campo-borde: #ddd;
+            --boton-fondo: #28a745;
+            --boton-texto: #ffffff;
+        }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --fondo: #121212;
-    --texto: #ffffff;
-    --tarjeta: #1e1e1e;
-    --borde: #444;
-    --boton-azul: #4285f4;
-    --texto-boton: #ffffff;
-    --boton-google: #1e1e1e;
-    --texto-google: #eee;
-  }
-}
+        /* Detecta TEMA OSCUR automáticamente */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --fondo-pagina: #000000;
+                --fondo-tarjeta: #2d2d2d;
+                --texto: #ffffff;
+                --campo-fondo: #444444;
+                --campo-borde: #666666;
+                --boton-fondo: #28a745;
+                --boton-texto: #ffffff;
+            }
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Roboto, sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-body {
-  background: var(--fondo);
-  color: var(--texto);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
+        body {
+            background-color: var(--fondo-pagina);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-.caja-sesion {
-  background: var(--tarjeta);
-  border-radius: 12px;
-  padding: 32px 24px;
-  width: 100%;
-  max-width: 360px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-}
+        .tarjeta {
+            background-color: var(--fondo-tarjeta);
+            color: var(--texto);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
 
-h2 {
-  text-align: center;
-  margin-bottom: 24px;
-  font-weight: 500;
-}
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
 
-input {
-  width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 16px;
-  border: 1px solid var(--borde);
-  border-radius: 6px;
-  background: var(--fondo);
-  color: var(--texto);
-  font-size: 15px;
-}
+        .campo {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: var(--campo-fondo);
+            border: 1px solid var(--campo-borde);
+            border-radius: 6px;
+            color: var(--texto);
+            font-size: 16px;
+        }
 
-input:focus {
-  outline: none;
-  border-color: var(--boton-azul);
-}
+        .campo:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
 
-.boton-azul {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  background: var(--boton-azul);
-  color: var(--texto-boton);
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
+        .boton {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--boton-fondo);
+            color: var(--boton-texto);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
 
-.separador {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-  color: #888;
-  font-size: 13px;
-}
-
-.separador::before, .separador::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--borde);
-}
-
-.boton-google {
-  width: 100%;
-  padding: 11px;
-  border: 1px solid var(--borde);
-  border-radius: 6px;
-  background: var(--boton-google);
-  color: var(--texto-google);
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.boton-google img {
-  width: 20px;
-  height: 20px;
-}
-</style>
+        .boton:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
+    <div class="tarjeta">
+        <h1>Iniciar sesió</h1>
+        <input type="email" class="campo" placeholder="Correo electrónico" required>
+        <button class="boton" onclick="irARepositorio()">Continuar</button>
+    </div>
 
-<div class="caja-sesion">
-  <h2>Iniciar sesión</h2>
-  <input type="email" id="correo" placeholder="Correo electrónico" required>
-  <button class="boton-azul" onclick="continuar()">Continuar</button>
-  
-  <div class="separador">o</div>
-
-  <button class="boton-google" onclick="ingresarGoogle()">
-    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-    Continuar con Google
-  </button>
-</div>
-
-<script>
-// Aquí pones el enlace de tu repositorio/espacio compartido
-const ENLACE_DESTINO = "https://github.com/TU_USUARIO/TU_REPOSITORIO_AQUI";
-
-function continuar() {
-  const correo = document.getElementById("correo").value;
-  if (!correo) {
-    alert("Por favor escribe tu correo");
-    return;
-  }
-  window.location.href = ENLACE_DESTINO;
-}
-
-function ingresarGoogle() {
-  // Para la conexión real con Google necesitas configurar Firebase o Google Cloud
-  // Por ahora funciona como acceso directo al espacio compartido
-  window.location.href = ENLACE_DESTINO;
-}
-</script>
+    <script>
+        // Te lleva al repositorio cuando aprietas el botón
+        function irARepositorio() {
+            const correo = document.querySelector('.campo').value;
+            if (correo) {
+                // ↓ PON AQUÍ TU ENLACE DE REPOSITORIO ↓
+                window.location.href = "https://github.com/tu-usuario/tu-repositorio";
+            } else {
+                alert("Escribe tu correo primero");
+            }
+        }
+    </script>
 </body>
 </html>
