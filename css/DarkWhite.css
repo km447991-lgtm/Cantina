@@ -1,0 +1,34 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: all 1.5s ease;
+}
+#tocar{
+    display: none;
+}
+.dark{
+    background-color: #333;
+    color: white;
+    transition: all 1.5s ease;
+}
+#modo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+#texto-modo {
+    display: inline-block;
+    min-width: 60px;
+    text-align: left;
+}
+body.dark .search {
+    background-color: #282828;
+}
+body.dark #input-buscador{
+    color: #ffffff;
+}
+body.dark .sidebar-toggle{
+    background: #1E1E1E;
+}

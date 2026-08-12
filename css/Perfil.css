@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.perfil{
+    position: relative;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 10px;
+    border: 2px solid black; 
+    background: #EDF2FA;
+    padding: 0;
+    overflow: visible;
+}
+html, body {
+    height: 100%;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.nombre-us{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.editar{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    height: 60px;
+    width: 60px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+span {
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 24px;
+}
+.mas{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    top:5px;
+    padding: 3px;
+}
+.carrito{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;          
+    height: 44vh;          
+    min-height: 80px;
+    max-height: 300px;
+    background-color: #4CAF50;
+    z-index: 10;
+    border-radius: 18px 18px 0 0;
+}
+.flecha{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: auto;
+}

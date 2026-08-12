@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <style>
+        /* Tema CLARO por defecto */
+        :root {
+            --fondo-pagina: #e9e9e9;
+            --fondo-tarjeta: #ffffff;
+            --texto: #000000;
+            --campo-fondo: #ffffff;
+            --campo-borde: #ddd;
+            --boton-fondo: #28a745;
+            --boton-texto: #ffffff;
+        }
+
+        /* Detecta TEMA OSCUR automáticamente */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --fondo-pagina: #000000;
+                --fondo-tarjeta: #2d2d2d;
+                --texto: #ffffff;
+                --campo-fondo: #444444;
+                --campo-borde: #666666;
+                --boton-fondo: #28a745;
+                --boton-texto: #ffffff;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--fondo-pagina);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .tarjeta {
+            background-color: var(--fondo-tarjeta);
+            color: var(--texto);
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+
+        .campo {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background-color: var(--campo-fondo);
+            border: 1px solid var(--campo-borde);
+            border-radius: 6px;
+            color: var(--texto);
+            font-size: 16px;
+        }
+
+        .campo:focus {
+            outline: none;
+            border-color: #1a73e8;
+        }
+
+        .boton {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--boton-fondo);
+            color: var(--boton-texto);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .boton:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="tarjeta">
+        <h1>Iniciar sesión</h1>
+        <input type="email" class="campo" placeholder="Correo electrónico" required>
+        <button class="boton" onclick="irARepositorio()">Continuar</button>
+    </div>
+
+    <script>
+        // Te lleva al repositorio cuando aprietas el botón
+        function irARepositorio() {
+            const correo = document.querySelector('.campo').value;
+            if (correo) {
+                // ↓ PON AQUÍ TU ENLACE DE REPOSITORIO ↓
+                window.location.href = "Perfil.html";
+            } else {
+                alert("Escribe tu correo primero");
+            }
+        }
+    </script>
+</body>
+</html>
