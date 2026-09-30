@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil</title>
-    <link rel="stylesheet" href="css/Perfil.css">
-</head>
-
+    <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil</title>
+<link rel="stylesheet" href="css/Perfil.css">
+    </head>
 <body>
-    <div>
-        <a href="index.html"><img src="Assets/back.png" alt="Salir" class="flecha"></a>
-                </li>
-        <div class="perfil-contenedor">
-            <button class="perfil"><img src="Assets/lapiz.png" class="editar" alt="lapiz"></button>
-            <h1 class="nombre-us">Usuario</h1>
-            <span class="nombre-us"><a href="Dinero.html"><img src="Assets/mas.png" class="mas" alt="mas">
-                    $0.00</a></span>
+    <div>   
+     <a href="index.html"><img src="Assets/back.png" alt="Salir" class="flecha"></a>
+    <div class="perfil-contenedor">
+    <div class="perfil-wrapper">
+    <button id="perfilFoto" class="perfil" type="button" aria-label="Editar perfil">
+                </button>
+                <div id="menuEditar" class="menu-editar" hidden>
+                    <button type="button" id="cambiarFoto" class="menu-opcion">Foto de perfil</button>
+                    <button type="button" id="cambiarNombre" class="menu-opcion">Cambiar nombre</button>
+                </div>
+                <input id="FotoPerfil" type="file" accept="image/*" hidden>
         </div>
-        <div>
+<h1 id="nombreUsuario" class="nombre-us" contenteditable="true" spellcheck="false">Usuario</h1>
+            <div class="saldo-wrapper">
+                <button id="saldoBtn" class="saldo-btn" type="button">
+                    <img src="Assets/mas.png" class="mas" alt="mas">
+                    <span id="saldoTexto">$0</span>
+                </button>
+                <div id="menuSaldo" class="menu-saldo" hidden>
+                    <button type="button" id="recargarSaldoBtn" class="menu-opcion">Recargar</button>
+                    <button type="button" id="cerrarSaldoBtn" class="menu-opcion">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    <div>
         <section class="carrito">
         </section>
         </div>
     </div>
+
+    <script src="js/perfil.js"></script>
 </body>
 
 </html>

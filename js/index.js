@@ -1,5 +1,8 @@
 const sidebar = document.querySelector('.sidebar');
 const openBtn = document.querySelector('.sidebar-toggle');
+const equisInput = document.getElementById("equis-input");
+const inputBuscador = document.getElementById("input-buscador");
+
 
 sidebar.style.display = '';
 
@@ -13,24 +16,15 @@ document.addEventListener('click', (e) => {
     sidebar.classList.remove('show-sidebar');
   }
 });
-const equisInput = document.getElementById("equis-input");
-const inputBuscador = document.getElementById("input-buscador");
-
-inputBuscador.addEventListener("keyup",()=>{
-    if( inputBuscador.value.length>0){
-        equisInput.style.display="block";
-    }
-    else{
-        equisInput.style.display="none";
-    }
+inputBuscador.addEventListener("keyup", () => {
+  if (inputBuscador.value.length > 0) {
+    equisInput.style.display = "block";
+  }
+  else {
+    equisInput.style.display = "none";
+  }
 });
-equisInput.addEventListener("click",()=>{
-        inputBuscador.value = "";
-        equisInput.style.display="none";
+equisInput.addEventListener("click", () => {
+  inputBuscador.value = "";
+  equisInput.style.display = "none";
 })
-function agregarProducto() {
-  const contenedor = document.getElementById('productos');
-  const nuevoProducto = document.createElement('div');
-  nuevoProducto.className = 'producto';
-  contenedor.appendChild(nuevoProducto);
-}

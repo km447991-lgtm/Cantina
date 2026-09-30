@@ -16,7 +16,6 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    cursor: pointer;
 }
 #texto-modo {
     display: inline-block;
@@ -30,5 +29,5 @@ body.dark #input-buscador{
     color: #ffffff;
 }
 body.dark .sidebar-toggle{
-    background: #1E1E1E;
+    background: #282828;
 }

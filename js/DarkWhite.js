@@ -8,9 +8,9 @@ tocar.addEventListener('change', (event) => {
 
     if (checked) {
         iconoModo.src = "Assets/modo-nocturno.png";
-        textoModo.textContent = "Oscuro";
+        textoModo.textContent = "Modo oscuro";
     } else {
         iconoModo.src = "Assets/modo-diurno.png";
-        textoModo.textContent = "Claro";
+        textoModo.textContent = "Modo claro";
     }
 });
