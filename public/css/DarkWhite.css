@@ -1,33 +1,48 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
     transition: all 1.5s ease;
 }
-#tocar{
+
+#tocar {
     display: none;
 }
-.dark{
-    background-color: #333;
+
+.dark {
+    background-color: #26282E;
     color: white;
     transition: all 1.5s ease;
 }
+
 #modo {
     display: inline-flex;
     align-items: center;
     gap: 8px;
 }
+
 #texto-modo {
     display: inline-block;
     min-width: 60px;
     text-align: left;
 }
+
 body.dark .search {
     background-color: #282828;
 }
-body.dark #input-buscador{
+
+body.dark #input-buscador {
     color: #ffffff;
 }
-body.dark .sidebar-toggle{
+
+body.dark .sidebar-toggle {
     background: #282828;
+}
+
+body.dark .sidebar-toggle {
+    background: #26282E;
+}
+
+body.dark .contenedor-inferior {
+    background: #3C3C3C;
 }

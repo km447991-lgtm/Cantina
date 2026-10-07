@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,32 +13,31 @@
 </head>
 
 <body>
+    <button class="sidebar-backdrop" type="button" aria-label="Cerrar menú"></button>
     <header class="contenedor-superior">
-        <button class="sidebar-toggle">
-            <i></i>
-        </button>
+        <img src="Assets/linea.png" class="sidebar-toggle" alt="Menu">
         <aside class="sidebar">
             <ul class="links">
                 <li>
                     <section class="perfil-contenedor">
-                        <button class="perfil"><a href="Perfil.html"></a></button>
+                        <button class="perfil"><a href="Perfil.php"></a></button>
                         <p class="perfil-datos">
                             <span class="perfil-texto">Usuario</span>
-                            <span class="perfil-dinero"><a href="Dinero.html">$0.00</a></span>
+                            <span class="perfil-dinero"><a href="Dinero.php">$0.00</a></span>
                         </p>
                     </section>
                 </li>
                 <hr class="linea">
                 <li>
-                    <a href="Sugerencias.html"><img src="Assets/carta.png" class="iconos"
-                            alt="Sugerencias">Sugerencias</a>
-                </li>
-                <li>
-                    <a href="Historial.html"><img src="Assets/historial-de-pedidos.png" class="iconos"
+                    <a href="Historial.php"><img src="Assets/historial-de-pedidos.png" class="iconos"
                             alt="Historial de compras">Historial de compras</a>
                 </li>
                 <li>
-                    <a href="Encuesta.html"><img src="Assets/encuesta.png" class="iconos" alt="Encuesta">Encuesta</a>
+                    <a href="Encuesta.php"><img src="Assets/encuesta.png" class="iconos" alt="Encuesta">Encuesta</a>
+                </li>
+                <li>
+                    <a href="Sugerencias.php"><img src="Assets/carta.png" class="iconos"
+                            alt="Sugerencias">Sugerencias</a>
                 </li>
                 <li>
                     <label for="tocar" id="modo">
@@ -46,19 +47,19 @@
                     <input type="checkbox" id="tocar">
                 </li>
                 <li>
-                    <a href="Admin.html"><img src="Assets/menu.png" class="iconos" alt="Menu admin">Menu admin</a>
+                    <a href="Admin.php"><img src="Assets/admin.png" class="iconos" alt="Menu admin">Menu admin</a>
                 </li>
             </ul>
         </aside>
         <form class="buscador">
             <span class="search">
-                <ion-icon name="search-outline"></ion-icon>
+                <img src="Assets/buscar.png" alt="Buscar" class="icono-buscar">
                 <input id="input-buscador" type="text" placeholder="Buscar...">
                 <ion-icon id="equis-input" name="close-outline"></ion-icon>
             </span>
         </form>
     </header>
-    <main>
+    <main class="contenedor-inferior">
     </main>
     <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>

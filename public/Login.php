@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -352,7 +354,7 @@
         >
 
         <button class="boton" type="submit">
-        <a href="index.html" class="texto-continuar">Continuar</a>
+        <a href="index.php" class="texto-continuar">Continuar</a>
         </button>
 
       </form>

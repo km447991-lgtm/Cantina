@@ -7,6 +7,9 @@
 ul {
     list-style: none;
 }
+body {
+    background-color: #DDE3E9
+}
 
 a {
     text-decoration: none;
@@ -23,12 +26,10 @@ a {
 }
 
 .sidebar-toggle {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    margin: 10px;
-    border: 2px solid #4caf50;
-    background: #EDF2FA;
+    height: auto;
+    width: 60px;
+    background-color: #DDE3E9;
+    padding: 3px;
 }
 
 .links a {
@@ -57,6 +58,26 @@ a {
     transition: transform .3s ease;
     background: #4CAF50;
     transform: translateX(-100%);
+    z-index: 2;
+}
+
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    border: 0;
+    background: rgb(0 0 0 / 45%);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .25s ease, visibility 0s linear .25s;
+}
+
+.show-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
 }
 
 .show-sidebar {
@@ -114,6 +135,7 @@ a {
 
 .contenedor-superior {
     display: flex;
+    align-items: center;
 }
 
 .buscador .search ion-icon {
@@ -125,8 +147,9 @@ a {
 }
 
 .buscador {
+    align-items: center;
     display: flex;
-    height: 55px;
+    height: 52px;
     width: 100%;
 }
 
@@ -169,4 +192,18 @@ input {
 
 #equis-input {
     display: none;
+}
+
+.icono-buscar {
+    width: 30px;
+    height: auto;
+    margin: 4px;
+}
+.contenedor-inferior {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px 8px 0 0;
+    height: 100vh;
+    width: 100%;
+    background-color: #FFFFFF;
 }
