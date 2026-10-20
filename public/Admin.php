@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../config/conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,22 +71,20 @@
                         <img id="vista-previa" alt="Vista previa del producto" hidden>
                         <span id="texto-imagen" class="subir-texto">+</span>
                     </label>
-                    <input id="imagen-producto" name="imagen" type="file" accept="image/*" hidden required>
+                    <input id="imagen-producto" name="imagen" type="file" accept="image/*" hidden>
 
                     <div class="campos-producto">
                         <label for="nombre-producto">Nombre</label>
-                        <input id="nombre-producto" name="nombre" type="text" placeholder="Nombre" autocomplete="off"
-                            required>
+                        <input id="nombre-producto" name="nombre" type="text" placeholder="Nombre" autocomplete="off">
 
                         <label for="precio-producto">Precio</label>
-                        <input id="precio-producto" name="precio" type="number" min="0" step="1" placeholder="0"
-                            required>
+                        <input id="precio-producto" name="precio" type="number" min="0" step="1" placeholder="0">
 
                         <label for="stock-producto">Stock</label>
-                        <input id="stock-producto" name="stock" type="number" min="0" step="1" value="0" required>
+                        <input id="stock-producto" name="stock" type="number" min="0" step="1" value="0">
 
                         <label for="categoria-producto">Categoría</label>
-                        <select id="categoria-producto" name="categoria" required>
+                        <select id="categoria-producto" name="categoria">
                             <option value="">Selecciona categoría</option>
                             <option value="Categoría">Añadir +</option>
                         </select>
@@ -93,7 +92,7 @@
                 </div>
 
                 <label class="etiqueta-descripcion" for="descripcion-producto">Descripción</label>
-                <textarea id="descripcion-producto" name="descripcion" placeholder="Descripción..." required></textarea>
+                <textarea id="descripcion-producto" name="descripcion" placeholder="Descripción..."></textarea>
 
                 <p class="mensaje-panel" id="mensaje-panel" aria-live="polite"></p>
 

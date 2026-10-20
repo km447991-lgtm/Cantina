@@ -2,7 +2,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    transition: all 1.5s ease;
 }
 
 #tocar {
@@ -12,7 +11,6 @@
 .dark {
     background-color: #26282E;
     color: white;
-    transition: all 1.5s ease;
 }
 
 #modo {
@@ -39,10 +37,9 @@ body.dark .sidebar-toggle {
     background: #282828;
 }
 
-body.dark .sidebar-toggle {
-    background: #26282E;
-}
-
 body.dark .contenedor-inferior {
     background: #3C3C3C;
+}
+body.dark .texto-superior {
+    color: #ffffff;
 }
