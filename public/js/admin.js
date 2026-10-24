@@ -1,7 +1,6 @@
 // Obtiene los elementos del formulario y de los paneles para poder manejarlos desde JavaScript.
 const botonAbrir = document.getElementById("boton-abrir-panel");
 const botonCancelar = document.getElementById("boton-cancelar-panel");
-const fondoPanel = document.getElementById("fondo-panel");
 const formulario = document.getElementById("formulario-producto");
 const entradaImagen = document.getElementById("imagen-producto");
 const vistaPrevia = document.getElementById("vista-previa");
@@ -10,11 +9,6 @@ const mensajePanel = document.getElementById("mensaje-panel");
 const listaProductos = document.getElementById("lista-productos");
 const fondoDetalle = document.getElementById("fondo-detalle");
 const botonEliminarProducto = document.getElementById("boton-eliminar-producto");
-
-function abrirPanel() {
-    fondoPanel.hidden = false;
-    document.getElementById("nombre-producto").focus();
-}
 
 function cerrarPanel() {
     fondoPanel.hidden = true;
