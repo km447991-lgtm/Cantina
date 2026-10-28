@@ -1,9 +1,9 @@
 <?php
 class logicaProducto
 {
-    public function logica($nombre_producto, $precio_producto, $stock, $receta)
+    public function guardar_producto ($nombre_producto, $precio_producto, $stock, $receta, $categoria)
     {
-        if (!empty($nombre_producto) && is_numeric($precio_producto) && $stock > 0 && !empty($receta)) {
+        if (!empty($nombre_producto) && !empty($categoria) && is_numeric($precio_producto) && $stock > 0 && !empty($receta)) {
             return true;
         } else {
             return false;

@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/conexion.php';
+require __DIR__ .'/../config/conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">

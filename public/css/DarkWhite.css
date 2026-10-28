@@ -33,13 +33,13 @@ body.dark #input-buscador {
     color: #ffffff;
 }
 
-body.dark .sidebar-toggle {
-    background: #282828;
-}
-
 body.dark .contenedor-inferior {
     background: #3C3C3C;
 }
 body.dark .texto-superior {
     color: #ffffff;
+}
+body.dark .campos{
+    color: #ffffff;
+    background-color: #282828;
 }

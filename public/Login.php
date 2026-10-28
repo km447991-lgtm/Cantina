@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once __DIR__ . '/../logica/logicaUsuario.php';
+require __DIR__ .'/../logica/logicaUsuario.php';
 require_once __DIR__ . '/../config/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['Usuario'];
-    $password = $_POST['password'];
+    $password = $_POST['contraseña'];
 
     if ($usuario == 'user' && $password == '1234') {
         $_SESSION['logueado'] = true;

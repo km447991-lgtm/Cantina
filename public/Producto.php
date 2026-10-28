@@ -1,63 +1,93 @@
 <?php
+require __DIR__ . '/../config/conexion.php';
+$method = $_SERVER['REQUEST_METHOD'];
+if ($method == "POST") {
+    if (isset($_POST["nombre"], $_POST["categoria"], $_POST["precio"], $_POST["stock"], $_POST["receta"]))
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $nombre_producto = $_POST["nombre"];
+        $precio_producto = $_POST["precio"];
+        $stock = $_POST["stock"];
+        $receta = $_POST["receta"];
+        $categoria = $_POST["categoria"];
 
+        $sql = "INSERT INTO productos (nombre, categoria, precio, stock, receta) VALUES (?,?,?,?,?)";
+
+        $stmt = $conexion->prepare($sql);    
+
+        $stmt->bind_param(
+            "ssd",
+            $nombre_producto,
+            $precio_producto,
+            $stock,
+            $receta,
+            $categoria
+        );
+        if ($stmt->execute()) {
+            echo "Producto ingresado";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+        $stmt->close();
+    }
+    $conexion->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
     <link rel="stylesheet" href="css/DarkWhite.css">
-    <link rel="stylesheet" href="css/Admin.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/Producto.css">
 </head>
+
 <body>
     <main>
-        <section class="panel-producto" role="dialog" aria-modal="true" aria-labelledby="titulo-panel">
-            <div class="encabezado-panel">
-                <h1 id="titulo-panel">Añadir producto</h1>
-            </div>
-
-            <form id="formulario-producto" autocomplete="off">
-                <div class="fila-imagen-datos">
-                    <label class="zona-imagen" for="imagen-producto">
-                        <img id="vista-previa" alt="Vista previa del producto" hidden>
-                        <span id="texto-imagen" class="subir-texto">+</span>
-                    </label>
-                    <input id="imagen-producto" name="imagen" type="file" accept="image/*" hidden>
-
-                    <div class="campos-producto">
-                        <label for="nombre-producto">Nombre</label>
-                        <input id="nombre-producto" name="nombre" type="text" placeholder="Nombre" autocomplete="off">
-
-                        <label for="precio-producto">Precio</label>
-                        <input id="precio-producto" name="precio" type="number" min="0" step="1" placeholder="0">
-
-                        <label for="stock-producto">Stock</label>
-                        <input id="stock-producto" name="stock" type="number" min="0" step="1" value="0">
-
-                        <label for="categoria-producto">Categoría</label>
-                        <select id="categoria-producto" name="categoria">
-                            <option value="">Selecciona categoría</option>
-                            <option value="Categoría">Añadir +</option>
+        <section>
+            <h1 class="texto-titulo">Agregar producto</h1>
+            <form method="POST">
+                <div class="contenedor-formulario-imagen">
+                    <div class="contenedor-formulario">
+                        <label for="Nombre">Nombre</label>
+                        <input class="campos" type="text" name="nombre">
+                        <label for="Categoria">Categoria</label>
+                        <select class="campos" name="categoria">
+                            <option>Seleccionar categoría</option>
+                            <option>Añadir +</option>
                         </select>
+                        <div class="precio-stock">
+                            <div class="contenedor-formulario">
+                                <label for="Precio">Precio</label>
+                                <input class="campos" type="number" name="precio">
+                            </div>
+                            <div class="contenedor-formulario">
+                                <label for="Stock">Stock</label>
+                                <input class="campos" type="number" name="stock">
+                            </div>
+                        </div>
+                        <label for="receta"></label>
+                        <textarea class="campos" class="receta-formulario" name="receta"></textarea>
+                    </div>
+                    <div class="formulario-imagen">
+                        <img alt="Producto-imagen" id="img" src="Assets/imagen.png">
+                        <input class="campo-imagen" type="file" class="imagen" id="imagen-producto" name="imagen" accept="image/*">
+                        <label for="imagen-producto" class="boton-imagen">Subir imagen</label>
                     </div>
                 </div>
-
-                <label class="etiqueta-descripcion" for="descripcion-producto">Descripción</label>
-                <textarea id="descripcion-producto" name="descripcion" placeholder="Descripción..."></textarea>
-
-                <p class="mensaje-panel" id="mensaje-panel" aria-live="polite"></p>
-
-                <div class="acciones-panel">
-                    <a href="Admin.php" class="boton-cancelar" id="boton-cancelar-panel" type="button">Cancelar</a>
-                    <a href="Admin.php" class="boton-guardar" type="submit">Guardar</a>
+                <div class="botones">
+                    <a href="Admin.php">
+                        <button>Cancelar</button>
+                    </a>
+                    <button type="submit">Confirmar</button> | <a href="Admin.php">Cancelar</a>
                 </div>
             </form>
         </section>
+
     </main>
-    <script src="js/index.js" defer></script>
-    <script src="js/admin.js" defer></script>
     <script src="js/DarkWhite.js"></script>
+    <script src="js/Producto.js"></script>
 </body>
+
 </html>

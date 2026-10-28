@@ -1,20 +1,13 @@
 <?php
-
 $host = "localhost";
-$bd = "cantina";
 $usuario = "root";
 $password = "";
-$charset = "utf8mb4";
+$base_datos = "cantina";
 
-$dsn = "mysql:host=$host;dbname=$bd;charset=$charset";
+$conexion = new mysqli($host, $usuario, $password, $base_datos);
 
-$opciones = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-];
-
-try {
-    $pdo = new PDO($dsn, $usuario, $password, $opciones);
-} catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+if ($conexion->connect_error) {
+    die("Error de conexion: " . $conexion->connect_error);
+} else {
+    echo "Conexion exitosa a MySQLi";
 }
