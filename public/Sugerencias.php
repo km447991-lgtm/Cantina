@@ -1,4 +1,27 @@
 <?php
+session_start();
+
+require __DIR__ . '/../config/conexion.php';
+require __DIR__ . '/../src/Persistencia/Encuesta&Sugerencia/SugerenciaPersistencia.php';
+
+$mensaje = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $idUsuario = (int) ($_SESSION['id_usuario'] ?? 0);
+    $texto = trim($_POST['sugerencia'] ?? '');
+
+    if ($idUsuario <= 0) {
+        http_response_code(401);
+        $mensaje = 'Iniciá sesión para enviar una sugerencia.';
+    } elseif ($texto === '') {
+        $mensaje = 'Escribí una sugerencia antes de enviarla.';
+    } else {
+        $persistencia = new \Sugerencia\SugerenciaPersistencia();
+        $persistencia->guardar($conexion, $idUsuario, $texto);
+        $mensaje = 'Sugerencia enviada.';
+    }
+}
+?>
 require __DIR__ .'/../config/conexion.php';
 ?>
 <!DOCTYPE html>
@@ -80,6 +103,9 @@ require __DIR__ .'/../config/conexion.php';
                 placeholder="Escribe aquí tu comentario o sugerencia..."></textarea>
             <button type="submit">Enviar</button>
         </form>
+                <?php if ($mensaje): ?>
+            <p><?php echo htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8'); ?></p>
+        <?php endif; ?>
     </div>
 </body>
 

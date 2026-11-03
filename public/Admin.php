@@ -1,4 +1,29 @@
 <?php
+if (!$resultado) {
+    throw new RuntimeException($conexion->error);
+}
+$resultado = $conexion->query(
+    'SELECT u.nombre, s.texto, s.fecha
+     FROM sugerencia AS s
+     JOIN Usuario AS u ON u.id_Usuario = s.fk_cliente
+     ORDER BY s.id_sugerencias DESC'
+);
+
+if (!$resultado) {
+    throw new RuntimeException($conexion->error);
+}
+require __DIR__ .'/../config/conexion.php';
+$sql = "SELECT id_producto, nombre_producto, precio_producto, id_categoria, stock, receta FROM producto";
+$productos = $conexion->query($sql);
+
+while ($sugerencia = $resultado->fetch_assoc()): ?>
+    <article>
+        <strong><?= htmlspecialchars($sugerencia['nombre'], ENT_QUOTES, 'UTF-8') ?></strong>
+        <small><?= htmlspecialchars($sugerencia['fecha'], ENT_QUOTES, 'UTF-8') ?></small>
+        <p><?= nl2br(htmlspecialchars($sugerencia['texto'], ENT_QUOTES, 'UTF-8')) ?></p>
+    </article>
+<?php endwhile; 
+?>
 require __DIR__ .'/../config/conexion.php';
 $sql = "SELECT id_producto, nombre_producto, precio_producto, id_categoria, stock, receta FROM producto";
 $productos = $conexion->query($sql);
