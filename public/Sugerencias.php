@@ -17,7 +17,7 @@ require __DIR__ .'/../config/conexion.php';
 </html>
 <style>
     body {
-        background: #f3f7f4;
+        background: #218838;
         margin: 0;
         display: flex;
         justify-content: center;
