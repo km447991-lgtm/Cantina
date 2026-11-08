@@ -1,10 +1,18 @@
 <?php
-require __DIR__ .'/../config/conexion.php';
-$sql = "SELECT id_producto, nombre_producto, precio_producto, id_categoria, stock, receta FROM producto";
+require __DIR__ . '/../config/conexion.php';
+$resultado = $conexion->query(
+    'SELECT u.nombre, s.texto, s.fecha
+     FROM sugerencia AS s
+     JOIN Usuario AS u ON u.id_Usuario = s.fk_cliente
+     ORDER BY s.id_sugerencias DESC'
+);
+
+$sql = "SELECT id_producto, nombre_producto, stock, receta, precio_producto, imagen_producto FROM producto";
 $productos = $conexion->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,12 +21,13 @@ $productos = $conexion->query($sql);
     <link rel="stylesheet" href="css/Admin.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-     <button class="sidebar-backdrop" type="button" aria-label="Cerrar menú"></button>
+    <button class="sidebar-backdrop" type="button" aria-label="Cerrar menú"></button>
     <header>
         <div class="menu-texto">
-        <img src="Assets/linea.png" class="sidebar-toggle" alt="Menu">
-        <h1 class="texto-titulo">Panel administrador</h1>
+            <img src="Assets/linea.png" class="sidebar-toggle" alt="Menu">
+            <h1 class="texto-titulo">Panel administrador</h1>
         </div>
         <div class="Botones">
             <a href="Producto.php">
@@ -42,7 +51,7 @@ $productos = $conexion->query($sql);
                 </li>
                 <li>
                     <a href="Historial.php"><img src="Assets/historial-de-pedidos.png" class="iconos"
-                            alt="Historial de compras">Historial de compras</a>
+                            alt="Historial de compras">Historial</a>
                 </li>
                 <li>
                     <a href="Encuesta.php"><img src="Assets/encuesta.png" class="iconos" alt="Encuesta">Encuesta</a>
@@ -62,12 +71,28 @@ $productos = $conexion->query($sql);
         </aside>
     </header>
     <section class="contenedor-inferior">
-
-
-    
+        <div class="Productos">
+            <?php foreach ($productos as $producto) { ?>
+                <article class="producto-inferior">
+                    <div>
+                        <img alt="<?php echo htmlspecialchars($producto['nombre_producto'], ENT_QUOTES, 'UTF-8'); ?>"
+                            src="<?php echo htmlspecialchars($producto['imagen_producto'], ENT_QUOTES, 'UTF-8'); ?>">
+                    </div>
+                    <div class="campos">
+                        <p><?php echo $producto["nombre_producto"]; ?></p>
+                        <div class="stock-precio">
+                            <p>$<?php echo $producto["precio_producto"]; ?></p>
+                            <p>Stock: <?php echo $producto["stock"]; ?></p>
+                        </div>
+                        <p><?php echo $producto["receta"]; ?></p>
+                    </div>
+                </article>
+            <?php } ?>
+        </div>
     </section>
     <script src="js/DarkWhite.js"></script>
     <script src="js/Admin.js"></script>
     <script src="js/index.js"></script>
 </body>
+
 </html>

@@ -16,16 +16,21 @@ require __DIR__ .'/../config/conexion.php';
 
 </html>
 <style>
+<<<<<<< HEAD
     body {
         background: #218838;
+=======
+    .body {
+        background: #f3f7f4;
+>>>>>>> 7627894 (Add/Vista de productos)
         margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         min-height: 100vh;
     }
 
     .caja-sugerencias {
+        position: center;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         background: #fff;
         width: 90%;
         max-width: 501px;
@@ -33,7 +38,7 @@ require __DIR__ .'/../config/conexion.php';
         border-radius: 12px;
     }
 
-    h1 {
+    .h1 {
         margin-top: 0;
         text-align: center;
         color: #333;
@@ -56,8 +61,22 @@ require __DIR__ .'/../config/conexion.php';
         font-size: 16px;
     }
 
+    button {
+        width: 100%;
+      height: 40px;
+      border: solid 1px black   ;
+      border-radius: 5px;
+      background: #4caf50;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: 0.2s;
+    }
+
     button:hover {
-        background: #218838;
+        background: #4caf50;
     }
 
     .flechasugerencias {
@@ -80,6 +99,7 @@ require __DIR__ .'/../config/conexion.php';
                 placeholder="Escribe aquí tu comentario o sugerencia..."></textarea>
             <button type="submit">Enviar</button>
         </form>
+         
     </div>
 </body>
 

@@ -36,10 +36,46 @@ body.dark #input-buscador {
 body.dark .contenedor-inferior {
     background: #3C3C3C;
 }
+
 body.dark .texto-superior {
     color: #ffffff;
 }
-body.dark .campos{
+
+body.dark .campos {
     color: #ffffff;
     background-color: #282828;
+}
+
+body.dark ::picker(select) {
+    background-color: #282828;
+    color: #ffffff;
+}
+
+label,
+a,
+button {
+    font-family: "Russo One", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+body.dark textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #4caf50 #282828;
+}
+
+body.dark form img, .producto-inferior img {
+    background-color: #282828;
+}
+
+body.dark .contenedor-formulario-imagen {
+    background-color: #3C3C3C;
+}
+
+body.dark .producto-inferior, .producto {
+    background-color: #26282E;
+}
+
+body.dark .producto {
+    background-color: #26282E;
 }

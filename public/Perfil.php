@@ -1,5 +1,5 @@
 <?php
-require __DIR__ .'/../config/conexion.php';
+require __DIR__ . '/../config/conexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,7 @@ require __DIR__ .'/../config/conexion.php';
 </head>
 
 <body>
+    <header class="contenedor-super">
     <img src="Assets/linea.png" class="sidebar-toggle" alt="Menu">
     <aside class="sidebar">
         <ul class="links">
@@ -28,8 +29,11 @@ require __DIR__ .'/../config/conexion.php';
             </li>
             <hr class="linea">
             <li>
+                <a href="index.php"><img src="Assets/productos.png" class="iconos" alt="Productos">Productos</a>
+            </li>
+            <li>
                 <a href="Historial.php"><img src="Assets/historial-de-pedidos.png" class="iconos"
-                        alt="Historial de compras">Historial de compras</a>
+                        alt="Historial de compras">Historial</a>
             </li>
             <li>
                 <a href="Encuesta.php"><img src="Assets/encuesta.png" class="iconos" alt="Encuesta">Encuesta</a>
@@ -50,7 +54,7 @@ require __DIR__ .'/../config/conexion.php';
             </li>
         </ul>
     </aside>
-    <div class="perfil-contenedor">
+    <div class="perfil-contenedor-2">
         <div class="perfil-wrapper">
             <button id="perfilFoto" class="perfil" type="button" aria-label="Editar perfil">
             </button>
@@ -72,6 +76,7 @@ require __DIR__ .'/../config/conexion.php';
             </div>
         </div>
     </div>
+    </header>
     <div>
         <section class="carrito">
         </section>

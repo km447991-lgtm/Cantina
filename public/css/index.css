@@ -7,6 +7,7 @@
 ul {
     list-style: none;
 }
+
 body {
     background-color: #DDE3E9
 }
@@ -55,7 +56,7 @@ a {
     grid-template-rows: auto 1fr auto;
     row-gap: 1rem;
     transition: transform .3s ease;
-    background: #4CAF50;
+    background: #4caf50;
     transform: translateX(-100%);
     z-index: 2;
 }
@@ -198,11 +199,35 @@ input {
     height: auto;
     margin: 4px;
 }
+
 .contenedor-inferior {
     display: flex;
     flex-direction: column;
     border-radius: 8px 8px 0 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
     background-color: #FFFFFF;
+}
+
+.campos-productos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+    padding: 12px;
+    gap: 12px;
+}
+
+.producto {
+    background-color: #DDE3E9;
+    border-radius: 6px;
+    padding: 2px;
+    border: solid 2px #4caf50;
+}
+.producto img{
+    display: block;
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border: solid 2px #4caf50;
+    border-radius: 6px;
 }

@@ -4,12 +4,14 @@
     box-sizing: border-box;
 }
 
-.contenedor-inferior {
-    display: flex;
-    background-color: #fff;
-    height: 100vh;
+body .contenedor-inferior {
+    display: block;
+    min-height: 100vh;
+    height: auto;
     width: 100%;
+    background-color: #fff;
     border-radius: 8px 8px 0 0;
+    padding: 12px;
 }
 
 .menu-texto {
@@ -25,7 +27,7 @@
 
 .boton-añadir {
     width: fit-content;
-    background-color: #4CAF50;
+    background-color: #4caf50;
     color: #fff;
     font-weight: 600;
     font-size: 18px;
@@ -36,4 +38,32 @@
 }
 .Botones{
     padding: 0 12px 5px; 
+}
+.Productos{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.producto-inferior{
+    display: flex;
+    border: solid 2px #4caf50;
+    border-radius: 6px;
+    background-color: #DDE3E9;
+    padding: 12px;
+    gap: 12px;
+}
+.campos{
+    display: flex;
+    flex-direction: column;
+}
+.stock-precio{
+    display: flex;
+}
+.producto-inferior img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: #4caf50 solid 2px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
 }
