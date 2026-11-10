@@ -79,3 +79,12 @@ body.dark .producto-inferior, .producto {
 body.dark .producto {
     background-color: #26282E;
 }
+body.dark .caja-sugerencias {
+    background-color: #454547;
+}
+body.dark .sugerencia-info {
+    background-color: #454547;
+}
+body.dark .caja-encuestas {
+    background-color: #454547;
+}
