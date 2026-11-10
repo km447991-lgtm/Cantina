@@ -1,27 +1,4 @@
 <?php
-session_start();
-
-require __DIR__ . '/../config/conexion.php';
-require __DIR__ . '/../src/Persistencia/Encuesta&Sugerencia/SugerenciaPersistencia.php';
-
-$mensaje = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $idUsuario = (int) ($_SESSION['id_usuario'] ?? 0);
-    $texto = trim($_POST['sugerencia'] ?? '');
-
-    if ($idUsuario <= 0) {
-        http_response_code(401);
-        $mensaje = 'Iniciá sesión para enviar una sugerencia.';
-    } elseif ($texto === '') {
-        $mensaje = 'Escribí una sugerencia antes de enviarla.';
-    } else {
-        $persistencia = new \Sugerencia\SugerenciaPersistencia();
-        $persistencia->guardar($conexion, $idUsuario, $texto);
-        $mensaje = 'Sugerencia enviada.';
-    }
-}
-?>
 require __DIR__ .'/../config/conexion.php';
 ?>
 <!DOCTYPE html>
@@ -31,7 +8,15 @@ require __DIR__ .'/../config/conexion.php';
     <link rel="stylesheet" href="css/Sugerencias.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sugerencias</title>
+    <title class="titulosugg">Sugerencias</title>
+      <style>
+        @import url(
+'https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+        body {
+            font-family: "Raleway", sans-serif
+        }
+    </style>
 </head>
 
 <body> <a href="index.php"><img src="Assets/back.png" alt="Salir" class="flechasugerencias"></a>
@@ -40,15 +25,17 @@ require __DIR__ .'/../config/conexion.php';
 </html>
 <style>
     body {
-        background: #f3f7f4;
+        background: #4caf50;
         margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         min-height: 100vh;
     }
 
     .caja-sugerencias {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 7px 5px 20px 20px rgba(0, 0, 0, 0.15);
         background: #fff;
         width: 90%;
         max-width: 501px;
@@ -56,7 +43,7 @@ require __DIR__ .'/../config/conexion.php';
         border-radius: 12px;
     }
 
-    h1 {
+    .h1 {
         margin-top: 0;
         text-align: center;
         color: #333;
@@ -79,16 +66,34 @@ require __DIR__ .'/../config/conexion.php';
         font-size: 16px;
     }
 
+    button {
+        width: 100%;
+      height: 40px;
+      border: solid 1px black   ;
+      border-radius: 5px;
+      background: #4caf50;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: 0.2s;
+     box-shadow: 7px 5px 20px 2.7px rgba(76, 175, 80)
+    }
+
     button:hover {
-        background: #218838;
+        background: rgb(76, 175, 80);
     }
 
     .flechasugerencias {
         position: fixed;
         top: 0;
         left: 0;
-        height: 60px;
+        height: 90px;
         width: auto;
+    }
+    .titulosugg {
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
     }
 </style>
 </head>
@@ -103,9 +108,7 @@ require __DIR__ .'/../config/conexion.php';
                 placeholder="Escribe aquí tu comentario o sugerencia..."></textarea>
             <button type="submit">Enviar</button>
         </form>
-                <?php if ($mensaje): ?>
-            <p><?php echo htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8'); ?></p>
-        <?php endif; ?>
+         
     </div>
 </body>
 
