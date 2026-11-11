@@ -12,8 +12,8 @@ if(!isset($_SESSION['usuario'])){
     die();
 }
 require __DIR__ . '/../config/conexion.php';
-$sql = "SELECT contrasena, id_Usuario, nombre, nombre_usuario FROM usuarios";
-$usuario = $conexion->query($sql);
+$sql = "SELECT nombre_usuario FROM usuarios";
+$nombre_usuario = $conexion->query($sql);
 $sql = "SELECT id_producto, nombre_producto, stock, receta, precio_producto, imagen_producto FROM producto";
 $productos = $conexion->query($sql);
 ?>
