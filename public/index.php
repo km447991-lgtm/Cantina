@@ -1,12 +1,19 @@
 <?php
+session_start();
+if(!isset($_SESSION['usuario'])){
+    echo '
+        <script>
+            alert("Por favor debe iniciar sesión");
+            window.location ="Login.php"
+        </script>
+    ';
+    header("location: Login.php");
+    session_destroy();
+    die();
+}
 require __DIR__ . '/../config/conexion.php';
-$resultado = $conexion->query(
-    'SELECT u.nombre, s.texto, s.fecha
-     FROM sugerencia AS s
-     JOIN Usuario AS u ON u.id_Usuario = s.fk_cliente
-     ORDER BY s.id_sugerencias DESC'
-);
-
+$sql = "SELECT contrasena, id_Usuario, nombre, nombre_usuario FROM usuarios";
+$usuario = $conexion->query($sql);
 $sql = "SELECT id_producto, nombre_producto, stock, receta, precio_producto, imagen_producto FROM producto";
 $productos = $conexion->query($sql);
 ?>
@@ -57,7 +64,9 @@ $productos = $conexion->query($sql);
                     <input type="checkbox" id="tocar">
                 </li>
                 <li>
+                    <?php if ($_SESSION["usuario"] == "Kevin"){?>
                     <a href="Admin.php"><img src="Assets/admin.png" class="iconos" alt="Menu admin">Menu admin</a>
+                    <?php } ?>
                 </li>
             </ul>
         </aside>

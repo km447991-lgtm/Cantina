@@ -1,12 +1,5 @@
 <?php
 require __DIR__ . '/../config/conexion.php';
-$resultado = $conexion->query(
-    'SELECT u.nombre, s.texto, s.fecha
-     FROM sugerencia AS s
-     JOIN Usuario AS u ON u.id_Usuario = s.fk_cliente
-     ORDER BY s.id_sugerencias DESC'
-);
-
 $sql = "SELECT id_producto, nombre_producto, stock, receta, precio_producto, imagen_producto FROM producto";
 $productos = $conexion->query($sql);
 ?>
