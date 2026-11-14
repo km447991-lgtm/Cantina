@@ -109,7 +109,10 @@ $enviado = isset($_GET['enviado']) && $_GET['enviado'] === '1';
         padding: 24px;
         border-radius: 12px;
     }
-
+    .titulouser {
+        font-size: 20px;
+        margin: 0 0 8px;
+    }
     .h1 {
         margin-top: 0;
         text-align: center;
@@ -123,14 +126,28 @@ $enviado = isset($_GET['enviado']) && $_GET['enviado'] === '1';
         color: #444;
     }
 
+    #titulouserInput,
     textarea {
+        display: block;
         width: 100%;
-        min-height: 140px;
-        resize: vertical;
         padding: 12px;
+        border: 1px solid #cfcfcf;
         border-radius: 8px;
         box-sizing: border-box;
         font-size: 16px;
+        background: #fff;
+        color: #222;
+        margin-bottom: 16px;
+        outline: none;
+    }
+
+    #titulouserInput {
+        height: 48px;
+    }
+
+    textarea {
+        min-height: 140px;
+        resize: vertical;
     }
 
     button {
@@ -223,9 +240,9 @@ $enviado = isset($_GET['enviado']) && $_GET['enviado'] === '1';
         <?php endif; ?>
 
         <form method="post" action="Sugerencias.php">
-            <label for="titulo">Título:</label>
-            <input type="text" id="titulo" name="titulo" maxlength="60" required>
-            <h2 class="sugerencia-info">Escribe tu sugerencia:</h2>
+            <label for="titulouserInput" class="titulouser">Título:</label>
+            <input type="text" id="titulouserInput" name="titulo" maxlength="60" required>
+            <label for="sugerencia" class="sugerencia-info">Escribe tu sugerencia:</label>
             <textarea id="sugerencia" name="sugerencia"
                 placeholder="Escribe aquí tu comentario o sugerencia..." required></textarea>
             <button type="submit">Enviar</button>
