@@ -1,8 +1,88 @@
 <?php
-require __DIR__ .'/../config/conexion.php';
+session_start();
+
+if (!isset($_SESSION['usuario'])) {
+    header('Location: Login.php');
+    exit;
+}
+
+require __DIR__ . '/../config/conexion.php';
+
+$error = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $titulo = trim($_POST['titulo'] ?? '');
+    $texto = trim($_POST['sugerencia'] ?? '');
+
+    if ($titulo === '' || preg_match('/^.{1,60}$/us', $titulo) !== 1) {
+        $error = 'El título es obligatorio y no puede superar los 60 caracteres.';
+    } elseif ($texto === '') {
+        $error = 'Escribe tu sugerencia antes de enviarla.';
+    } else {
+        $transaccionIniciada = false;
+        try {
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            $conexion->set_charset('utf8mb4');
+
+            $consultaUsuario = $conexion->prepare(
+                'SELECT id_Usuario FROM usuarios WHERE nombre = ? LIMIT 1'
+            );
+            $consultaUsuario->bind_param('s', $_SESSION['usuario']);
+            $consultaUsuario->execute();
+            $consultaUsuario->bind_result($idCliente);
+            $usuarioEncontrado = $consultaUsuario->fetch();
+            $consultaUsuario->close();
+
+            if (!$usuarioEncontrado) {
+                $error = 'No se pudo identificar tu usuario. Vuelve a iniciar sesión.';
+            } else {
+                $conexion->begin_transaction();
+                $transaccionIniciada = true;
+
+                $consultaCliente = $conexion->prepare(
+                    'SELECT id_cliente FROM cliente WHERE id_cliente = ?'
+                );
+                $consultaCliente->bind_param('i', $idCliente);
+                $consultaCliente->execute();
+                $consultaCliente->store_result();
+                $clienteExiste = $consultaCliente->num_rows > 0;
+                $consultaCliente->close();
+
+                if (!$clienteExiste) {
+                    $crearCliente = $conexion->prepare(
+                        'INSERT INTO cliente (id_cliente, saldo) VALUES (?, 0)'
+                    );
+                    $crearCliente->bind_param('i', $idCliente);
+                    $crearCliente->execute();
+                    $crearCliente->close();
+                }
+
+                $fecha = date('Y-m-d H:i:s');
+                $guardarSugerencia = $conexion->prepare(
+                    'INSERT INTO sugerencia (fk_cliente, texto, fecha, titulo) VALUES (?, ?, ?, ?)'
+                );
+                $guardarSugerencia->bind_param('isss', $idCliente, $texto, $fecha, $titulo);
+                $guardarSugerencia->execute();
+                $guardarSugerencia->close();
+                $conexion->commit();
+                $transaccionIniciada = false;
+
+                header('Location: Sugerencias.php?enviado=1');
+                exit;
+            }
+        } catch (mysqli_sql_exception $exception) {
+            if ($transaccionIniciada) {
+                $conexion->rollback();
+            }
+            error_log('Error al guardar sugerencia: ' . $exception->getMessage());
+            $error = 'No se pudo guardar la sugerencia. Inténtalo nuevamente.';
+        }
+    }
+}
+
+$enviado = isset($_GET['enviado']) && $_GET['enviado'] === '1';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <link rel="stylesheet" href="css/Sugerencias.css">
@@ -11,12 +91,6 @@ require __DIR__ .'/../config/conexion.php';
     <title>Sugerencias</title>
     <link rel="stylesheet" href="css/DarkWhite.css">
     <link rel="stylesheet" href="css/index.css">
-</head>
-
-<body>
-</body>
-
-</html>
 <style>
     body {
         margin: 0;
@@ -141,10 +215,19 @@ require __DIR__ .'/../config/conexion.php';
     <div class="caja-sugerencias">
         <h1>Sugerencias</h1>
 
-        <form>
+        <?php if ($enviado): ?>
+            <p role="status">Tu sugerencia se guardó correctamente.</p>
+        <?php endif; ?>
+        <?php if ($error !== ''): ?>
+            <p role="alert"><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></p>
+        <?php endif; ?>
+
+        <form method="post" action="Sugerencias.php">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" maxlength="60" required>
             <h2 class="sugerencia-info">Escribe tu sugerencia:</h2>
             <textarea id="sugerencia" name="sugerencia"
-                placeholder="Escribe aquí tu comentario o sugerencia..."></textarea>
+                placeholder="Escribe aquí tu comentario o sugerencia..." required></textarea>
             <button type="submit">Enviar</button>
         </form>
          
