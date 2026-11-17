@@ -2,6 +2,9 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: "Russo One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 body .contenedor-inferior {
@@ -36,34 +39,83 @@ body .contenedor-inferior {
     border: none;
 
 }
-.Botones{
-    padding: 0 12px 5px; 
+
+.Botones {
+    padding: 0 12px 5px;
 }
-.Productos{
+
+.Productos {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
-.producto-inferior{
-    display: flex;
+
+.producto-inferior {
     border: solid 2px #4caf50;
     border-radius: 6px;
     background-color: #DDE3E9;
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) auto;
     padding: 12px;
     gap: 12px;
 }
-.campos{
+
+.datos-producto {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 5px;
 }
-.stock-precio{
+.botones_editar_eliminar{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.botones_editar_eliminar button{
+    padding: 7px 10px 7px 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    color: #FFFFFF;
+    border: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.editar{
+    background-color: #4caf50;
+}
+.eliminar{
+    background-color: #ED463C;
+}
+.botones_editar_eliminar button img{
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    aspect-ratio: auto;
+    height: auto;
+    width: 25px;
+    object-fit: contain;
+} 
+.nombre {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.datos-producto p {
+    font-weight: 600;
+}
+
+.stock-precio {
     display: flex;
 }
+
 .producto-inferior img {
+    display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4/3;
     object-fit: cover;
-    border: #4caf50 solid 2px;
+    border: solid 2px #4caf50;
     background-color: #FFFFFF;
     border-radius: 6px;
 }

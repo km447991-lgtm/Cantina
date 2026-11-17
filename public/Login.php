@@ -2,7 +2,8 @@
 session_start();
 
 if (isset($_SESSION['usuario'])) {
-    header("location: index.php");
+    header("Location: index.php");
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -17,7 +18,7 @@ if (isset($_SESSION['usuario'])) {
 
 <body>
     <main>
-        <form action="../logica/logicaUsuario/login_usuario.php" method="POST">
+        <form action="../app/logica/logicaUsuario/login_usuario.php" method="POST">
             <h1>Iniciar Sesión</h1>
             <div class="entryarea">
                 <input type="text" name="nombre" required>

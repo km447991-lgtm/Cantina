@@ -8,11 +8,6 @@
     display: none;
 }
 
-.dark {
-    background-color: #26282E;
-    color: white;
-}
-
 #modo {
     display: inline-flex;
     align-items: center;
@@ -25,25 +20,33 @@
     text-align: left;
 }
 
-body.dark .search {
+label,
+a,
+button,
+span,
+p {
+    font-family: "Russo One", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.dark {
+    background-color: #26282E;
+    color: white;
+}
+
+body.dark .search,
+body.dark .campos,
+body.dark form img,
+.producto-inferior img {
     background-color: #282828;
 }
 
-body.dark #input-buscador {
+body.dark #input-buscador,
+body.dark .campos,
+body.dark .contenedor-sugerencia input,
+body.dark .contenedor-sugerencia textarea {
     color: #ffffff;
-}
-
-body.dark .contenedor-inferior {
-    background: #3C3C3C;
-}
-
-body.dark .texto-superior {
-    color: #ffffff;
-}
-
-body.dark .campos {
-    color: #ffffff;
-    background-color: #282828;
 }
 
 body.dark ::picker(select) {
@@ -51,12 +54,13 @@ body.dark ::picker(select) {
     color: #ffffff;
 }
 
-label,
-a,
-button {
-    font-family: "Russo One", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+body.dark .contenedor-inferior,
+body.dark .contenedor-formulario-imagen, body.dark .contenedor-sugerencia{
+    background-color: #3C3C3C;
+}
+
+body.dark .texto-superior {
+    color: #ffffff;
 }
 
 body.dark textarea {
@@ -64,27 +68,14 @@ body.dark textarea {
     scrollbar-color: #4caf50 #282828;
 }
 
-body.dark form img, .producto-inferior img {
-    background-color: #282828;
-}
-
-body.dark .contenedor-formulario-imagen {
-    background-color: #3C3C3C;
-}
-
-body.dark .producto-inferior, .producto {
-    background-color: #26282E;
-}
-
+body.dark .contenedor-superior,
+body.dark .producto-inferior,
 body.dark .producto {
     background-color: #26282E;
 }
-body.dark .caja-sugerencias {
-    background-color: #454547;
-}
-body.dark .sugerencia-info {
-    background-color: #454547;
-}
+
+body.dark .caja-sugerencias,
+body.dark .sugerencia-info,
 body.dark .caja-encuestas {
     background-color: #454547;
 }

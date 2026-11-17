@@ -1,65 +1,57 @@
 <?php
-require __DIR__ . '/../config/conexion.php';
-$method = $_SERVER['REQUEST_METHOD'];
-if ($method == "POST") {
-    if (isset($_POST["nombre"], $_POST["id_categoria"], $_POST["precio"], $_POST["stock"], $_POST["receta"], $_FILES["imagen"]))
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            $nombre_producto = $_POST["nombre"];
-            $precio_producto = $_POST["precio"];
-            $stock = $_POST["stock"];
-            $receta = $_POST["receta"];
-            $id_categoria = $_POST["id_categoria"];
-            $archivo = $_FILES["imagen"];
+require_once __DIR__ . '/../utils/protexion.php';
+require_once __DIR__ . '/../app/logica/LogicaProducto.php';
+function guardarImagenProducto(?array $archivo): string
+{
+    if ($archivo === null || $archivo["error"] !== UPLOAD_ERR_OK) {
+        throw new RuntimeException("No se pudo recibir la imagen.");
+    }
 
-            if (!$archivo || $archivo["error"] !== UPLOAD_ERR_OK) {
-                exit("No se pudo recibir la imagen.");
-            }
-            $tiposPermitidos = [
-                "image/jpeg" => "jpg",
-                "image/png" => "png",
-                "image/webp" => "webp"
-            ];
-            $tipo = (new finfo(FILEINFO_MIME_TYPE))->file($archivo["tmp_name"]);
-            if (!isset($tiposPermitidos[$tipo])) {
-                exit("La imagen debe ser JPG, PNG o WEBP.");
-            }
+    $tipos = [
+        "image/jpeg" => "jpg",
+        "image/png" => "png",
+        "image/webp" => "webp"
+    ];
 
-            $carpetaImagenes = __DIR__ . "/Imágenes/productos/";
-            if (!is_dir($carpetaImagenes) && !mkdir($carpetaImagenes, 0755, true)) {
-                exit("No se pudo crear la carpeta de imágenes.");
-            }
+    $tipo = (new finfo(FILEINFO_MIME_TYPE))->file($archivo["tmp_name"]);
+    if (!isset($tipos[$tipo])) {
+        throw new RuntimeException("La imagen debe ser JPG, PNG o WEBP.");
+    }
 
-            $nombreArchivo = bin2hex(random_bytes(16)) . "." . $tiposPermitidos[$tipo];
-            if (!move_uploaded_file($archivo["tmp_name"], $carpetaImagenes . $nombreArchivo)) {
-                exit("No se pudo guardar la imagen.");
-            }
-            $imagen_producto = "Imágenes/productos/" . $nombreArchivo;
-            $sql = "INSERT INTO producto
-            (id_categoria, stock, precio_producto, receta, nombre_producto, imagen_producto)
-            VALUES (?, ?, ?, ?, ?, ?)";
-            //fk_administrador
+    $carpeta = __DIR__ . "/Imágenes/productos/";
+    if (!is_dir($carpeta) && !mkdir($carpeta, 0755, true)) {
+        throw new RuntimeException("No se pudo crear la carpeta de imágenes.");
+    }
 
-            $stmt = $conexion->prepare($sql);
+    $nombre = bin2hex(random_bytes(16)) . "." . $tipos[$tipo];
+    if (!move_uploaded_file($archivo["tmp_name"], $carpeta . $nombre)) {
+        throw new RuntimeException("No se pudo guardar la imagen.");
+    }
 
-            $stmt->bind_param(
-                "iiisss",
-                $id_categoria,
-                $stock,
-                $precio_producto,
-                $receta,
-                $nombre_producto,
-                $imagen_producto
-            );
-            if ($stmt->execute()) {
-                $stmt->close();
-                header("Location: Admin.php");
-                exit;
-            } else {
-                echo "Error: " . $stmt->error;
-            }
-            $stmt->close();
-        }
-    $conexion->close();
+    return "Imágenes/productos/" . $nombre;
+}
+
+$logicaProducto = new LogicaProducto();
+$categorias = $logicaProducto->listarCategorias();
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    try {
+        $imagen = guardarImagenProducto($_FILES["imagen"] ?? null);
+
+        $logicaProducto->agregarProducto(
+            $_POST["nombre"],
+            (int) $_POST["id_categoria"],
+            (int) $_POST["stock"],
+            (int) $_POST["precio"],
+            $_POST["receta"] ?? "",
+            $imagen
+        );
+
+        header("Location: Admin.php");
+        exit;
+    } catch (RuntimeException $e) {
+        echo "Error: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -87,13 +79,11 @@ if ($method == "POST") {
                         <label for="Categoria">Categoria</label>
                         <select class="campos" name="id_categoria">
                             <option value="">Seleccionar categoría</option>
-                            <?php
-                            $query = "SELECT id_categoria, nombre_categoria FROM categoria";
-                            $resultado = $conexion->query($query);
-                            while ($row = $resultado->fetch_assoc()) {
-                                echo '<option value="' . $row['id_categoria'] . '">' . htmlspecialchars($row['nombre_categoria']) . '</option>';
-                            }
-                            ?>
+                            <?php foreach ($categorias as $categoria) { ?>
+                                <option value="<?php echo (int) $categoria["id_categoria"]; ?>">
+                                    <?php echo htmlspecialchars($categoria["nombre_categoria"], ENT_QUOTES, "UTF-8"); ?>
+                                </option>
+                            <?php } ?>
                         </select>
                         <div class="precio-stock">
                             <div class="contenedor-formulario">

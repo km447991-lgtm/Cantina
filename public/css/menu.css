@@ -1,0 +1,136 @@
+.perfil {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 5px;
+    border: none;
+    background: #E2E7E5;
+}
+
+.sidebar-toggle {
+    height: auto;
+    width: 60px;
+    padding: 3px;
+}
+
+.links a, .hide-button {
+    display: block;
+    font-size: 24px;
+    padding: 16px;
+    color: #FFFFFF;
+}
+.hide-button{
+    border: none;
+    background-color: transparent;
+    color: #FFFFFF;
+}
+a {
+    text-decoration: none;
+}
+
+.links label {
+    display: block;
+    font-size: 24px;
+    padding: 16px;
+    color: #FFFFFF;
+}
+
+.links{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.links .ultimo {
+    margin-top: auto;
+    border-top: 1px solid #FFFFFF;
+    padding-top: 8px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform .3s ease;
+    background: #4caf50;
+    transform: translateX(-100%);
+    z-index: 2;
+}
+
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    border: 0;
+    background: rgb(0 0 0 / 45%);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .25s ease, visibility 0s linear .25s;
+}
+
+.show-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition-delay: 0s;
+}
+
+.show-sidebar {
+    transform: translateX(0);
+}
+
+@media screen and (min-width: 310px) {
+    .sidebar {
+        width: 310px;
+    }
+}
+
+.iconos{
+    width: 35px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.linea {
+    height: 1px;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.perfil-contenedor {
+    display: flex;
+    align-items: center;
+    gap: -10px;
+    padding: 5px;
+}
+
+.perfil-datos {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-texto {
+    display: block;
+    margin: 0;
+    padding: 3px;
+    line-height: 1;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.perfil-dinero a {
+    display: block;
+    margin: 0;
+    padding: 3px;
+    line-height: 1;
+    font-size: 16px;
+    color: #FFFFFF;
+}

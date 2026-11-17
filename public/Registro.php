@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +10,7 @@
 
 <body>
     <main>
-        <form action="../logica/logicaUsuario/registro_usuario.php" method="POST">
+        <form action="../app/logica/logicaUsuario/registro_usuario.php" method="POST">
             <h1>Registro</h1>
             <div class="entryarea">
                 <input type="text" name="nombre" required>

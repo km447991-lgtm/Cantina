@@ -1,47 +1,34 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('sugerencias-overlay');
-    const page = document.getElementById('pagina-principal');
-    const openTrigger = document.querySelector('.open-sugerencias');
-    const closeBtn = document.querySelector('.cerrar-sugerencias');
-    const sidebar = document.querySelector('.sidebar');
+const hideButton = document.getElementById('hide-button');
+const closeButton = document.getElementById('close-button');
+const hideform = document.getElementById('hide-form');
+const fondoSugerencias = document.getElementById('fondo-sugerencias');
 
-    if (!overlay || !page || !openTrigger) {
-        return;
+hideButton.addEventListener('click', () => {
+    const currentDisplay = window.getComputedStyle(hideform).display;
+
+    if (currentDisplay === 'none') {
+        hideform.style.display = 'flex';
+        fondoSugerencias.style.display = 'block';
+    } else {
+        hideform.style.display = 'none';
+        fondoSugerencias.style.display = 'none';
     }
+});
 
-    const openModal = () => {
-        if (sidebar) {
-            sidebar.classList.remove('show-sidebar');
-        }
-        overlay.classList.add('active');
-        overlay.setAttribute('aria-hidden', 'false');
-        page.classList.add('blurred');
-    };
+closeButton.addEventListener('click', () => {
+    hideform.style.display = 'none';
+    fondoSugerencias.style.display = 'none';
+});
 
-    const closeModal = () => {
-        overlay.classList.remove('active');
-        overlay.setAttribute('aria-hidden', 'true');
-        page.classList.remove('blurred');
-    };
+document.addEventListener('click', (event) => {
+    const estaVisible = window.getComputedStyle(hideform).display !== 'none';
 
-    openTrigger.addEventListener('click', (event) => {
-        event.preventDefault();
-        openModal();
-    });
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
+    if (
+        estaVisible &&
+        !hideform.contains(event.target) &&
+        !hideButton.contains(event.target)
+    ) {
+        hideform.style.display = 'none';
+        fondoSugerencias.style.display = 'none';
     }
-
-    overlay.addEventListener('click', (event) => {
-        if (event.target === overlay) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && overlay.classList.contains('active')) {
-            closeModal();
-        }
-    });
 });

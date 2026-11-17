@@ -1,0 +1,141 @@
+.contenedor-sugerencia,
+.contenedor-sugerencia * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Russo One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#fondo-sugerencias {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: rgb(0 0 0 / 45%);
+    z-index: 4;
+}
+.contenedor-sugerencia {
+    z-index: 5;
+    background-color: #D9D9D9;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    padding: 24px;
+    min-height: 400px;
+    width: 100%;
+    max-width: 520px;
+    border: 2px solid #4acf50;
+    transition: opacity .25s ease, visibility 0s linear .25s;
+}
+
+.contenedor-sugerencia h1 {
+    font-weight: 700;
+    padding: 0 0 12px 0;
+}
+
+.contenedor-sugerencia input,
+.contenedor-sugerencia textarea {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    background-color: #EDF2FA;
+    border: 2px solid #4acf50;
+
+}
+
+.contenedor-sugerencia textarea {
+    flex: 1;
+    resize: vertical;
+    border-radius: 6px;
+}
+
+.contenedor-sugerencia .enviar-cancelar {
+    display: flex;
+    gap: 6px;
+}
+
+.contenedor-sugerencia .enviar-cancelar button {
+    border-radius: 6px;
+    border: none;
+    padding: 5px 18px;
+    font-size: 16px;
+}
+
+.contenedor-sugerencia select {
+    appearance: base-select;
+}
+
+.contenedor-sugerencia select::picker(select) {
+    appearance: base-select;
+    border: solid 2px #4caf50;
+    border-radius: 6px;
+    background-color: #EDF2FA;
+}
+
+.contenedor-sugerencia select::picker-icon {
+    color: #4caf50;
+}
+
+.contenedor-sugerencia input:focus {
+    border-bottom: 2px solid #4acf50;
+}
+
+.contenedor-sugerencia textarea:focus {
+    border: 2px solid #4caf50;
+    outline: none;
+}
+
+.contenedor-sugerencia .entryarea {
+    position: relative;
+    width: 100%;
+    height: 40px;
+}
+
+.contenedor-sugerencia .entryarea input {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+
+.contenedor-sugerencia .labelline {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    transition: top 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.contenedor-sugerencia .entryarea input:focus+.labelline,
+.contenedor-sugerencia .entryarea input:valid+.labelline {
+    top: 0;
+    transform: translateY(-50%) scale(0.88);
+}
+
+.contenedor-sugerencia input::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+.contenedor-sugerencia input {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #4caf50;
+    outline: none;
+}
+
+.contenedor-sugerencia .enviar {
+    background-color: #4acf50;
+    color: #fff;
+}
+
+.contenedor-sugerencia .cancelar {
+    background-color: #0F0F0F;
+    color: #fff;
+}
